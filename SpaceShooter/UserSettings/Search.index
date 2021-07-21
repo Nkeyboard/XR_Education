@@ -1,0 +1,12 @@
+{
+    "name": "Assets",
+    "includes": [],
+    "excludes": ["Temp/", "External/"],
+    "options": {
+        "types": true,
+        "properties": false,
+        "extended": false,
+        "dependencies": false
+    },
+    "baseScore": 999
+}
