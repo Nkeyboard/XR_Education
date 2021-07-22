@@ -6,6 +6,7 @@ public class PlayerControl : MonoBehaviour
 {
     private float h;
     private float v;
+    private float r;
     public float speed = 10.0f;
     private Animation anim;
     void Awake()
@@ -28,10 +29,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
+        h = Input.GetAxis("Horizontal");
+        v = Input.GetAxis("Vertical");
+        r = Input.GetAxis("Mouse X");
+
         Vector3 dir = ((Vector3.forward * v) + (Vector3.right * h)).normalized;
         transform.Translate(dir * speed * Time.deltaTime);
+        transform.Rotate(Vector3.up * Time.deltaTime * 200.0f * r); ;
+
         PlayerAnim();
     }
 
