@@ -9,15 +9,8 @@ public class PlayerControl : MonoBehaviour
     private float r;
     public float speed = 10.0f;
     private Animation anim;
-    void Awake()
-    {
-        
-    }
+    public float hp = 100.0f;
 
-    void OnEnable()
-    {
-        
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -54,14 +47,27 @@ public class PlayerControl : MonoBehaviour
             anim.CrossFade("Idle", 0.3f);
 
     }
-    // 물리 연산 주기(0.02 sec)
-    void FixedUpdate()
+
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (hp > 0.0f && other.CompareTag("PUNCH"))
+        {
+            hp -= 10.0f;
+            if (hp <= 0.0f)
+            {
+                PlayerDie();
+            }
+        }
     }
-    // 연산 후처리 작업 ex)3인칭 카메라
-    void LateUpdate()
+
+    void PlayerDie()
     {
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
         
+        for(int i = 0; i < monsters.Length; i++)
+        {
+            monsters[i].SendMessage("YouWin",SendMessageOptions.DontRequireReceiver);
+        }
     }
+
 }

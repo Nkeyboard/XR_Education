@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - BULLET
+  - PLAYER
+  - PUNCH
+  - MONSTER
   layers:
   - Default
   - TransparentFX
